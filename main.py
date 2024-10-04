@@ -1,9 +1,9 @@
-import logging
 import requests
-from telegram import Update
-from telegram.ext import ApplicationBuilder, ContextTypes, CommandHandler
-from dotenv import load_dotenv
+import logging
 import os
+from telegram.ext import ApplicationBuilder, ContextTypes, CommandHandler
+from telegram import Update
+from dotenv import load_dotenv
 
 load_dotenv()
 
@@ -21,7 +21,7 @@ def get_exchange_rate():
     try:
         response = requests.get(url)
         data = response.json()
-        return data['rates']  # Возвращаем курс доллара к рублю
+        return data['rates']['RUB']  # Возвращаем курс доллара к рублю
     except Exception as e:
         logger.error(f"Ошибка получения курса: {e}")
         return None
